@@ -1,13 +1,7 @@
 #include "../inc/ft_visu.h"
 
-void new_signal(type_signal **signal)
-{
-    *signal = malloc(sizeof(type_signal));
-    if (!*signal)
-        return;
-}
 
-void *new_wave(type_wave **wave)
+void new_wave(type_wave **wave)
 {
 
     *wave = malloc(sizeof(type_wave));
@@ -15,7 +9,14 @@ void *new_wave(type_wave **wave)
         return;
 }
 
-type_wave *generate_wave(void)
+void new_signal(type_signal **signal)
+{
+    *signal = malloc(sizeof(type_signal));
+    if (!*signal)
+        return;
+}
+
+void generate_wave(type_wave **wave)
 {
 
     int a, x;
@@ -32,10 +33,11 @@ type_wave *generate_wave(void)
     }
 }
 
-void generate_signal(type_status *input)
+void generate_signal(type_status **input)
 {
     int i;
-    type_signal **signal = new_signal();
+    type_signal **signal;
+    new_signal(signal);
     static int f1 = 4;
     static int f2 = 0;
     static int f3 = 0;
@@ -54,15 +56,16 @@ void generate_signal(type_status *input)
 
     for (i = 0; i < N; i++)
     {
-        input->signal[i] = 0;
-        input->signal[i] += amp1 * sinf(2 * M_PI * f1 * i / N);
-        input->signal[i] += amp2 * sinf(2 * M_PI * f2 * i / N);
-        input->signal[i] += amp3 * sinf(2 * M_PI * f3 * i / N);
-        input->signal[i] /= 3;
+        printf("signal:%d", (*input)->signal[i]);
+        (*input)->signal[i] = 0;
+        (*input)->signal[i] += amp1 * sinf(2 * M_PI * f1 * i / N);
+        (*input)->signal[i] += amp2 * sinf(2 * M_PI * f2 * i / N);
+        (*input)->signal[i] += amp3 * sinf(2 * M_PI * f3 * i / N);
+        (*input)->signal[i] /= 3;
     }
 }
 
-void display_signal(type_status *input)
+void display_signal(type_status **input)
 {
 
     int i;
@@ -73,12 +76,12 @@ void display_signal(type_status *input)
     int signal_x = 150;
     int signal_y = 50;
     gfx_line(0, signal_y, N, signal_y);
-    for (i = 0; i < N; i++)
+/*     for (i = 0; i < N; i++)
     {
-        time_point = input->signal[i];
+       time_point = (*input)->signal[i];
         gfx_color(100, 250, 130);
-        // gfx_point(N, signal_y * time_point);
-    }
+        gfx_point(N, signal_y * time_point);
+    } */
 
     /* draw cuts on signal */
 

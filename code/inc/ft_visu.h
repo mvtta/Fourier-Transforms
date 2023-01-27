@@ -9,9 +9,10 @@
 #include "../lib/minilibx/mlx.h"
 #include "../lib/libgfx/gfx.h"
 
-#define XSIZE 1000
-#define YSIZE 800
+#define XSIZE 1920
+#define YSIZE 1080
 #define N 1000
+#define A 40
 
 typedef struct wave{
 
@@ -43,16 +44,15 @@ typedef struct state_buffer{
 
 
 /* Prototypes Functions */
-type_signal *new_signal();
 
-
-void *new_wave(type_wave **wave);
-type_wave *generate_wave(void);
+void new_wave(type_wave **wave);
 void new_signal(type_signal **signal);
 
+void generate_wave(type_wave **wave);
+void generate_signal(type_status **signal);
 
-void generate_signal(type_status *signal);
 void display_signal(type_status **input);
+
 
 /* vector operations
 ----------------------------------

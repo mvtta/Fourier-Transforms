@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "mlx.h": "c",
+        "gfx.h": "c",
+        "ft_visu.h": "c"
+    }
+}

@@ -1,0 +1,460 @@
+%\documentclass[ams,fleqn,amsmath,amssymb]{report}
+\documentclass[ams,fleqn,amsmath,amssymb]{article}
+%\documentclass[ams,fleqn,amsmath,amssymb,reqno]{amsbook}
+
+\makeatletter
+\def\@tocline#1#2#3#4#5#6#7{\relax
+\ifnum #1>\c@tocdepth % then omit
+\else
+\par \addpenalty\@secpenalty\addvspace{#2}%
+\begingroup \hyphenpenalty\@M
+\@ifempty{#4}{%
+  \@tempdima\csname r@tocindent\number#1\endcsname\relax
+}{%
+  \@tempdima#4\relax
+}%
+\parindent\z@ \leftskip#3\relax \advance\leftskip\@tempdima\relax
+\rightskip\@pnumwidth plus4em \parfillskip-\@pnumwidth
+#5\leavevmode\hskip-\@tempdima #6\nobreak\relax
+\ifnum#1<0\hfill\else\dotfill\fi\hbox to\@pnumwidth{\@tocpagenum{#7}}\par
+\nobreak
+\endgroup
+\fi}
+\makeatother
+
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    linkcolor=black,  %choose some color if you want links to stand out
+}
+
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@thm}{\thm@headfont{\scshape}}{\thm@headfont{\scshape\bfseries}}{}{}
+\patchcmd{\@thm}{\thm@notefont{\fontseries\mddefault\upshape}}{}{}{}
+\makeatother
+
+
+%\renewcommand{\chaptermark}[1]{%
+%	\markboth{#1}{}} 
+\renewcommand{\sectionmark}[1]{%
+	\markright{\thesection\ #1}} 
+%\fancyhf{} % delete current header and footer 
+%\fancyhead[LE,RO]{\bfseries\thepage} 
+%\fancyhead[LO]{\bfseries\rightmark} 
+%\fancyhead[RE]{\bfseries\leftmark} 
+%\renewcommand{\headrulewidth}{0.5pt} 
+%\renewcommand{\footrulewidth}{0pt} 
+%\addtolength{\headheight}{0.5pt} % space for the rule 
+%\fancypagestyle{plain}{%
+%	\fancyhead{} % get rid of headers on plain pages
+%	\renewcommand{\headrulewidth}{0pt} % and the line
+%}
+
+\newcommand{\bed}{\[}
+\newcommand{\eed}{\]}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\beqa}{\begin{eqnarray}}
+\newcommand{\eeqa}{\end{eqnarray}}
+\newcommand{\ket} [1] {\vert #1 \rangle}
+\newcommand{\bra} [1] {\langle #1 \vert}
+\newcommand{\braket}[2]{\langle #1 | #2 \rangle}
+\newcommand{\proj}[1]{\vert{#1} \rangle \langle {#1} \vert}
+\newcommand{\mean}[1]{\langle #1 \rangle}
+\newcommand{\gras}[1]{\bold{#1}}
+\newcommand{\widebar}[1]{\overline{#1}}
+\newcommand{\bitem}{\item[$\bullet$]}
+\newcommand{\citem}{\item[$\circ$]}
+\newcommand{\fract}{\mathop{\mathrm{frac}}}
+\newcommand{\erf}{\mathop{\mathrm{erf}}}
+\newcommand{\Tr}{\mathop{\mathrm{Tr}}}
+\newcommand{\tr}{\mathop{\mathrm{tr}}}
+\newcommand{\Proba} [1] {\textrm{Proba} \big[  #1 \big]}
+\newcommand{\vol} [1] {\textrm{vol} (  #1  )}
+
+\newtheorem{theorem}{Theorem}%[chapter]
+\newtheorem{proposition}{Proposition}%[chapter]
+\newtheorem{lemma}{Lemma}%[chapter]
+\newtheorem{corollary}{Corollary}%[chapter]
+\newtheorem{definition}{Definition}%[chapter]
+\newtheorem{example}{Example}%[chapter]
+
+\usepackage{graphicx}
+\usepackage[mathscr]{eucal}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{epsfig}
+\DeclareGraphicsRule{.tif}{png}{.png}{` convert #1 ` basename #1 .tif .png}
+
+%\bibliographystyle{apsrev}
+
+\begin{document}
+
+\title{Fourier Transform, exploring fundamentals \\  What does it mean, why does it exist, how does it work, where is applied?}
+\date{}
+
+\author{Mariana Valdetaro \\ Nonsense University \\ January 2023}
+
+\maketitle
+
+\tableofcontents
+
+%\chapter*{}
+%%%%%%%%%%%%%%%
+
+%\chapter*{Acknowledgements}
+%%%%%%%%%%%%%%%
+
+\begin{align}
+
+  \section{abstract}
+	%%%%%%%%%%%
+	
+	  The main challenge you’ll face when writing your abstract is keeping it concise AND fitting in all the information you need. Depending on your subject area the journal may require a structured abstract following specific headings. A structured abstract helps your readers understand your study more easily. If your journal doesn’t require a structured abstract it’s still a good idea to follow a similar format, just present the abstract as one paragraph without headings. 
+	  
+	  Background or Introduction – What is currently known?
+	  Start with a brief, 2 or 3 sentence, introduction to the research area. 
+	  
+	  Objectives or Aims – What is the study and why did you do it?
+	  Clearly state the research question you’re trying to answer.
+	  
+	  Methods – What did you do?
+	  Explain what you did and how you did it. Include important information about your methods, but avoid the low-level specifics. Some disciplines have specific requirements for abstract methods. 
+	  
+	  CONSORT for randomized trials.
+	  STROBE for observational studies
+	  PRISMA for systematic reviews and meta-analyses
+	  Results – What did you find?
+	  Briefly give the key findings of your study. Include key numeric data (including confidence intervals or p values), where possible.
+	  
+	  Conclusions – What did you conclude?
+	  Tell the reader why your findings matter, and what this could mean for the ‘bigger picture’ of this area of research.
+	
+
+\end{align}
+
+
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{}
+  
+  This is where you describe briefly and clearly why you are writing the paper. The introduction supplies sufficient background information for the reader to understand and evaluate the experiment you did. It also supplies a rationale for the study.
+  
+  Goals:
+  • Present the problem and the proposed solution
+  • Presents nature and scope of the problem investigated
+  • Reviews the pertinent literature to orient the reader
+  • States the method of the experiment
+  • State the principle results of the experiment
+  
+  
+  Introduction
+  
+   Indicate the field of the work, why this field is important, and what has already been done (with proper citations).
+  
+   Indicate a gap, raise a research question, or challenge prior work in this territory.
+  
+   Outline the purpose and announce the present research, clearly indicating what is novel and why it is significant.
+  
+   Avoid: repeating the abstract; providing unnecessary background information; exaggerating the importance of the work; claiming novelty without a proper literature search. 
+  
+  
+  
+  Step 1: Introduce your topic
+  Step 2: Describe the background
+  Step 3: Establish your research problem
+  Step 4: Specify your objective(s)
+  Step 5: Map out your paper
+  Research paper introduction examples
+  Frequently asked questions about the research paper introduction
+  
+  
+  
+  
+  
+  
+  \subsection{Time Varying functions}
+  \begin{definition} A function f(x) is said to be periodic (or, when emphasizing the presence of a single period instead of multiple periods, singly periodic) with period p if
+  \eeq f(x)=f(x+np) 
+  
+  The constant function f(x)=0 is periodic with any period R for all nonzero real numbers R, so there is no concept analogous to the least period for constant functions. The following table summarizes the names given to periodic functions based on the number of independent periods they posses.
+  
+  \subsection{Waves}
+  %%%%%%%%%%%%%%%%%%%%%
+  
+  \begin{definition} Given a pre Hilbert space $X$, its dual $X^*$ is the space of bounded linear functions $X \to \mathbb C$.
+  
+  \end{definition}
+  
+  \begin{proposition} Let $X$ denote a pre Hilbert space, $y \in X$, and let us consider the map 
+  \beq
+  \phi_y : X \to  \mathbb C : x \to \langle y, x \rangle.
+  \eeq
+  $ \phi_y \in  X^* $ and $ || \phi_y ||_\infty = || y || $.
+  
+  \end{proposition}
+  
+  \textit{Proof:} Let us assume $y \neq 0$, the proposition is trivially true if $y=0$. On the one hand, by Cauchy-Schwarz inequality, whe have $|\phi_y(x)| = | \langle y, x \rangle | \leq || x || \cdot || y ||$, which implies $|| \phi_y ||_\infty = \sup_{x \neq 0} \frac{|\phi_y( x ) |}{ || x || } \leq || y ||$. On the other hand, $|\phi_y(y)| = | \langle y, y \rangle | = || y ||^2$, which implies $|| \phi_y ||_\infty \geq \frac{|\phi_y( y ) |}{ || y || } = \frac{ || y ||^2 }{ || y || }$. Thus $ || \phi_y ||_\infty = || y || $. Linearity of $\phi_y : X \to \mathbb C$ is evident.   
+  
+  \begin{theorem}[Riesz] Let $H$ denote some Hilbert space. 
+  
+  \begin{enumerate}
+  
+  \item
+  $\forall \phi \in H^*$, there exists a unique $y$ such that $\phi(x) = \langle y, x \rangle \; \forall x \in H$.
+  
+  \item
+  The map $\psi: H \to H^*: y \to \langle y, \cdot \rangle$ is a conjugate linear isometry of $X$ onto $X^*$.
+  
+  \end{enumerate}
+  
+  \end{theorem}
+  
+  \begin{thebibliography}{99}
+  %%%%%%%%%%%%%%%%%
+  
+  \bibitem{rudin-87}
+  W. Rudin, \textit{Real and complex analysis}, McGraw-Hill (1987).
+  
+  \end{thebibliography}
+  
+  \appendix
+  
+  \subsection{Signals}
+  %%%%%%%%%%%%%%%%%%%%%%
+  
+  \subsection{Domains}
+  %%%%%%%%%%%%%%%%%%%%%%
+  
+  \subsection{Periodicity}
+  
+  
+\end{}
+
+
+\begin{}
+  
+
+
+
+
+
+
+  \section{What is it?}
+  
+  \subsection*{Notation}
+  Unlike many mathematical field of science, Fourier Transform theory does not have a well
+  defined set of standard notations. The notation maintained throughout will be:
+  x, y → Real Space co-ordinates
+  u, v → Frequency Space co-ordinates
+  and lower case functions (eg f(x)), being a real space function and upper case functions (eg
+  F(u)), being the corresponding Fourier transform, thus:
+  F(u) = F { f(x)}
+  f(x) = F
+  −1
+  {F(u)}
+  where F {} is the Fourier Transform operator.
+  The character ı will be used to denote √
+  −1, it should be noted that this character differs from
+  the conventional i (or j). This slightly odd convention and is to avoid confusion when the
+  digital version of the Fourier Transform is discussed in some courses since then i and j will be
+  used as summation variables.
+  https://www2.ph.ed.ac.uk/~wjh/teaching/Fourier/documents/booklet.pdf
+  
+  \subsection*{Notation}
+  
+  \subsection*{Properties}
+  
+  \subparagraph*{title}{Symetyu}
+  \subsection{title}{Convolution}
+  
+\end{}
+
+\begin{}
+  
+  \section{Why does it exist?}
+  
+\end{}
+
+\begin{}
+  
+  \section{How does it work?}
+  
+\subsection{Intuition}
+%%%%%%%%%%%%%%%%%%%%%%
+Considering a binary system of information categorized by the states : on and off, when represented in terms of time and captured as a snapshot, would possibly register as illustrated on the figure [n_of_figure](www.ola.com)
+
+The previous abstraction suggests that along an horizontal axis in a two-dimensional space, representing time measure in seconds, and a vertical axis representing the state [0,1]
+
+Considering an input which alters it's state once every two seconds, 
+
+```bash
+state
+on  |        _______
+|       |       |
+|       |       |
+        off |_______|_______|___________ 
+        0       1       2       3      t in seconds
+        ```
+        
+        In this its's also valid to describe, ie: the time period of a vibrating body as 0.5 seconds,
+        being the "time period", the time of a full cycle, or the time it takes for the change between zero and one, given a moment.
+
+        ```
+
+\subsection*{Theory}
+decomposes any function into a sum of sinusoidal basis functions. Each of these basis functions is a complex exponential of a different frequency. The Fourier Transform therefore gives us a unique way of viewing any function - as the sum of simple sinusoids.
+
+The Fourier Series showed us how to rewrite any periodic function into a sum of sinusoids. The Fourier Transform is the extension of this idea to non-periodic functions.
+
+While the the Fourier Transform is a beautiful mathematical tool, its widespread popularity is due to its practical application in virtually every field of science and engineering. It's hard to understand why the Fourier Transform is so important. But I can assure you it enables the solution to difficult problems be made simpler (and also makes previously unsolved problems solvable). In addition, the Fourier Transform gives us a new method of viewing the world, which is fantastic for giving a more intuitive feel for our universe.
+
+To begin the study, it's best to jump right in to the definition and study of the Fourier Transform. Then a bunch of applications can be presented, which will justify the hooplah surrounding the Transform.
+
+Without further adieu, the Fourier Transform of a function g(t) is defined by:
+
+definition of Fourier Transform
+[Equation 1]
+
+\fourierDefinition.gif
+
+https://scholar.harvard.edu/files/schwartz/files/lecture8-fouriertransforms.pdf
+
+\subsection*{Convolution}
+https://www2.ph.ed.ac.uk/~wjh/teaching/Fourier/documents/booklet.pdf
+\subsection*{Correlation}
+https://www2.ph.ed.ac.uk/~wjh/teaching/Fourier/documents/booklet.pdf
+\subsection*{Correlation}
+\subsection*{Examples}
+https://www.wikihow.com/Calculate-the-Fourier-Transform-of-a-Function
+\end{}
+
+
+\begin{}
+  
+  \section{Where is it applied?}
+  
+  \subsection{Signal Processing}
+  \subparagraph*{title}{Neuroscience}
+  \subparagraph*{title}{Geophysical signal processing}
+  \subparagraph*{title}{acoustics}
+  \url{https://asa.scitation.org/doi/10.1121/1.389385}
+  \subparagraph*{title}{SIGNAL DETECTION}
+  \url{https://www.mdpi.com/1424-8220/22/16/5954}
+  \subparagraph*{title}{ASTRONOMY}
+  ABSTRACT
+  Infrared spectroscopy has many applications, and the Fourier transform spectrometer (FTS) has become an important analytical tool for these purposes. In addition to its use in benign laboratory environments, the FTS has found great acceptance for the difficult tasks of remote sensing of the Earth from satellites, and for space exploration by probes to other planets. This paper provides an overview of the characteristics and applications of many of the spaceborne FTS systems used in the past as well as those on the drawing boards for future use. A discussion of critical design issues is included in addition. A review of Fourier transform spectroscopy principles; a brief history of FTS instrument development; and a discussion of a possible future direction are also provided. An extensive list of references is contained as well.
+  REFERENCES
+  
+  https://aip.scitation.org/doi/abs/10.1063/1.1146154
+  https://doi.org/10.1063/1.1146154
+  
+  subparagraph{remote sensing}
+  https://www.spiedigitallibrary.org/journals/optical-engineering/volume-50/issue-6/066201/Fourier-transform-hyperspectral-imaging-polarimeter-for-remote-sensing/10.1117/1.3591951.short?SSO=1
+  Theory and simulations of a novel hyperspectral imaging polarimeter for remote sensing are presented. The spectropolarimeter is formed by cascading two laser servocontrol modified wave plates (MWP) and a polarization interference imaging spectrometer (PIIS). Using the phase modulation of the MWPs, this setup enables PIIS, originally developed by C. Zhang, to be extended for full polarization detection without dividing the interference fringes into channels as that in Oka's original channeled polarimeter. In this way, we can get the polarization information with higher spectral resolution. Besides, the data can be acquired with simpler operation. Aside from this feature, the configuration retains the advantages of both elements: the high precision phase modulation of the MWPs and the high spectral, spatial resolution, and higher throughput of the PIIS. A design example with spectral resolution 100 cm-1 and range 0.4-1.0 µm is given.
+  ©(2011) Society of Photo-Optical Instrumentation Engineers (SPIE)
+  
+  \subparagraph*{Telecomunications}
+  
+  In communications theory the signal is usually a voltage, and Fourier theory is essential to understanding how a signal behaves when it passes through filters, amplifiers and communications channels. Even discrete digital communications which use 0's or 1's to send information still have frequency contents. This is perhaps easiest to grasp in the case of trying to send a single square pulse down a channel.
+  The field of communications spans a range of applications from high-level network management down to sending individual bits down a channel. The Fourier transform is usually associated with these low level aspects of communications.
+  
+  If we take simple digital pulse that is to be sent down a telephone line, it will ideally look like thi
+  his fact has to be considered when trying to send large amounts of data down a channel, because if too much is sent then the data will be corrupted by channel and will be unusable.
+  
+  Extending the example of the telephone line, whenever you dial a number on a " touch-tone " phone you hear a series of different tones. Each of these tones is composed of two different frequencies that add together to produce the sound you hear.
+  
+  The Fourier transform is an ideal method to illustrate this, as it shows these two frequencies e.g.
+  
+  https://w.astro.berkeley.edu/~jrg/ngst/fft/comms.html
+  
+  Bell Telephone Laboratories, Incorporated
+  Holmdel, New Jersey
+  The development of rapid algorithms for computation
+  of the discrete Fourier transform has encouraged the use of
+  this transform in the design of communication systems. Here
+  we describe and analyze a data transmission system in which
+  the transmitted signal is the Fourier transform Of the original
+  data sequence and the demodulator is a discrete Fourier transformer. This system is a realization of the frequency division
+  multiplexing strategy known as "parallel data transmission",
+  and it is constructed in this manner so that the data demodulator, after analog to digital conversion, may be a computer
+  program employing one of the fast Fourier transform algorithms.
+  The system appears attractive in that it may be entirely
+  implemented by digital circuitry. We study the performance
+  of this system in the presence of typical linear channel characteristics. It is shown, via computer simulation and computation
+  of the variances of errors, how the system corrects linear
+  channel distortion.
+  -----------------
+  
+  I. SYSTEM OPERATION
+  Basically, the Fourier transform data communication
+  system transmits the Fourier transform of the original data
+  signal, and the receiver computes the inverse transform to
+  retrieve the data. Consider a binary pulse sequence
+  x(t) = ~ dk6(t-kAt) ,
+  k
+  where At is the intervalbetween pulses, for example, the sequence
+  pictured in Figure i. The Fourier transform of N successive pulses
+  is
+  N-i
+  X(f) = 2 ~ dne-J2wnfAt, (i)
+  n=O
+  where the factor of 2 is inserted for later convenience. If this
+  Fourier transform is transmitted as a complex time signal, with
+  the frequency variable replaced by f = t/N(At) 2 (arbitrarily
+  selected for later convenience), we have 
+  
+  \suection{quantum}
+  In this tutorial, we introduce the quantum fourier transform (QFT), derive the circuit, and implement it using Qiskit. We show how to run QFT on a simulator and a five qubit device.
+  
+  Contents 
+  https://qiskit.org/textbook/ch-algorithms/quantum-fourier-transform.html
+  
+\end{}
+
+
+
+\begin{}
+  
+  \section*{Algorythms}
+  
+\end{}
+
+
+
+
+
+---------------------------------------------------------------------------------------
+
+\section{Fourier Representation}
+%%%%%%%%%%%%%%%%%%%%%%
+\url{https://www.mdpi.com/mathematics/mathematics-06-00335/article_deploy/html/images/mathematics-06-00335-g001.png}
+\url{https://www.dspguide.com/graphics/F_12_2.gif}
+\url{https://www.embs.org/wp-content/uploads/2016/01/table2.jpg}
+
+\subsection{Measuring and Discretizing Input field}
+%%%%%%%%%%%%%%%%%%%%%%
+
+The discrete Fourier transform (DFT) is one of the most important tools in digital signal processing. This chapter discusses three common ways it is used. First, the DFT can calculate a signal's frequency spectrum. This is a direct examination of information encoded in the frequency, phase, and amplitude of the component sinusoids. For example, human speech and hearing use signals with this type of encoding. Second, the DFT can find a system's frequency response from the system's impulse response, and vice versa. This allows systems to be analyzed in the frequency domain, just as convolution allows systems to be analyzed in the time domain. Third, the DFT can be used as an intermediate step in more elaborate signal processing techniques. The classic example of this is FFT convolution, an algorithm for convolving signals that is hundreds of times faster than conventional methods.
+
+\url{https://www.sciencedirect.com/book/9780750674447/digital-signal-processing}
+
+\subsection{Complex Representation}
+%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Computational Methods}
+%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Discrete Fourier Transform}
+%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Fast Fourier Transform}
+%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}

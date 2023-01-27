@@ -1,17 +1,13 @@
 #include "../inc/ft_visu.h"
 
-type_status *new_record(void)
+void new_record(type_status **state)
 {
     int i;
-    type_status *state;
-    state = NULL;
-    state = malloc(sizeof(state));
-    if (!state)
-        return (NULL);
-    malloc(sizeof(state->signal[N]));
-    if(!state->signal)
-        return (NULL);
-    return (state);
+    (*state) = malloc(sizeof(state));
+    if (!(*state))
+        return;
+    (*state)->signal[N_SAMPLES];
+           return;
 }
 
 void free_state_date(type_status *record)

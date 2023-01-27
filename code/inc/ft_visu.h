@@ -9,9 +9,9 @@
 #include "../lib/minilibx/mlx.h"
 #include "../lib/libgfx/gfx.h"
 
-#define XSIZE 1920
-#define YSIZE 1080
-#define N 1000
+#define N_SAMPLES 1000
+#define XSIZE N_SAMPLES
+#define YSIZE 768
 #define A 40
 
 typedef struct wave{
@@ -38,12 +38,13 @@ typedef struct data{
 
 typedef struct state_buffer{
 
-    int signal[N]; /* signal data record of N samples */
-    int fourier_transformed[N]; /* fourier transfrorm data points record */
+    int signal[N_SAMPLES]; /* signal data record of N samples */
+    int fourier_transformed[N_SAMPLES]; /* fourier transfrorm data points record */
 } type_status;
 
 
 /* Prototypes Functions */
+void new_record(type_status **state);
 
 void new_wave(type_wave **wave);
 void new_signal(type_signal **signal);
@@ -51,7 +52,7 @@ void new_signal(type_signal **signal);
 void generate_wave(type_wave **wave);
 void generate_signal(type_status **signal);
 
-void display_signal(type_status **input);
+int *display_signal(type_status *s);
 
 
 /* vector operations

@@ -7,25 +7,29 @@ curr compiling with */
 int main(int ac, char **av)
 {
     int angle = 40;
-    int c;
+    int c,n;
     double x, y;
 
-    // type_wave *twave;
-    type_status **status;
 
-    /* initialize data frame 
-        create and open screen in 
-            vcXsrv xeyes window draw bounding frame
-    -------------------------------------------------
-    */
-    gfx_open(XSIZE, YSIZE, "FFT");
-    /* generate_signal(status);: seg fault here must
-         be a pointer thing
-    -------------------------------------- */
-    generate_signal(status);
-    // display_signal(status);
+    /* initialize data frame create and open screen in 
+    vcXsrv xeyes window draw bounding frame
+    -------------------------------------------------*/
+    gfx_open(N_SAMPLES, YSIZE, "FFT");
+    
+    type_status *s =  NULL;
+    s = malloc(sizeof(type_status));
+
+        for (n = 0; n < N_SAMPLES; n++)
+    {
+        s->fourier_transformed[n] = 0;
+    }
+    
+    
+    /* -------------------------------------- */
+
     while (1)
     {
+        display_signal(s);
         /* q = = quit */
         c = gfx_wait();
         if (c == 'q')

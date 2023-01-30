@@ -2,7 +2,7 @@
 #include "../lib/libgfx/gfx.h"
 
 /*
-   Discrete Fourier Transform
+   No so discrete Fourier Transform
 */
 int dft( int dir, int m, int *x1, int *y1 ) {
 

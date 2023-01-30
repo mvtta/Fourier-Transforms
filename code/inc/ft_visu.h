@@ -1,17 +1,20 @@
 /* 
     header file for: ft_visu.h
 */
-#include <stdlib.h>
 #include <stdio.h>
-#include <math.h>
-/* #include <graphics.h> */
+#include <stdlib.h>
 #include <string.h>
+#include <math.h>
+#include <float.h>
+#include <time.h>
+#include <complex.h>
+/* #include <graphics.h> */
 #include "../lib/minilibx/mlx.h"
 #include "../lib/libgfx/gfx.h"
 
-#define N_SAMPLES 1000
-#define XSIZE N_SAMPLES
-#define YSIZE 768
+#define N_SAMPLES 500
+#define XSIZE 2000
+#define YSIZE 1768
 #define A 40
 
 typedef struct wave{

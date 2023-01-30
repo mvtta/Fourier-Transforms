@@ -1,5 +1,6 @@
 #include "../inc/ft_visu.h"
 
+/* just idea does not work with gfx.lib  */
 void display_text(char *text_to_display)
 {
     setcolor(WHITE);
@@ -14,7 +15,6 @@ void display_text(char *text_to_display)
 
     outtext(str);
 }
-
 
 void open_window(int xsize, int ysize,const char *name_of_window)
 {

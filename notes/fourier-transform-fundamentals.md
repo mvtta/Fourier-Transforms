@@ -4,8 +4,9 @@
 
 Context
 
-    The following pages are organized notes logged while studying the topic, as proposed in the L1 hiring processes.
-    Due to the time constraints, several revisions and editing should follow, at the present moment is in "as is" stage.\\
+    The following pages are simple, organized notes, logged while studying.
+    
+    ** Due to the time constraints, several revisions and editing should follow, at the present moment is in "as is" stage.
 
 Motivation
 

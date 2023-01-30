@@ -1,5 +1,4 @@
 
-<!-- https://epubs.siam.org/doi/abs/10.1137/1026103?journalCode=siread -->
 # Fourier Transforms
 
 As part of Harmonic Analysis, , Fourier Analysis is composed by four variants:
@@ -10,7 +9,7 @@ Harmonic analysis
 
 Fourier Transform
 Fourier Series
-Discrete-Time Fourier transform
+Discrete-Time Fourier transformmd
 Discrete Fourier transform
 
 

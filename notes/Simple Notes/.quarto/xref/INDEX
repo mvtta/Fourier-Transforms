@@ -1,0 +1,59 @@
+{
+  "index.qmd": {
+    "index.html": "37ee139c"
+  },
+  "intro.qmd": {
+    "intro.html": "91690bf1"
+  },
+  "summary.qmd": {
+    "summary.html": "6a87f8d2"
+  },
+  "introduction.qmd": {
+    "introduction.html": "b6701ecd"
+  },
+  "time.qmd": {
+    "time.html": "92cfc9ea"
+  },
+  "circularpath.qmd": {
+    "circularpath.html": "953109da"
+  },
+  "motion.qmd": {
+    "motion.html": "0002b120"
+  },
+  "symetry.qmd": {
+    "symetry.html": "57d0b6c2"
+  },
+  "frequency.qmd": {
+    "frequency.html": "fe2b7348"
+  },
+  "waves.qmd": {
+    "waves.html": "b86521fc"
+  },
+  "signals.qmd": {
+    "signals.html": "36ef28aa"
+  },
+  "fourieranalysis.qmd": {
+    "fourieranalysis.html": "acc7b0ba"
+  },
+  "transforms.qmd": {
+    "transforms.html": "cfe5e3bf"
+  },
+  "reversetransforms.qmd": {
+    "reversetransforms.html": "da887fde"
+  },
+  "exercises.qmd": {
+    "exercises.html": "34c97d72"
+  },
+  "implementations.qmd": {
+    "implementations.html": "5eb495de"
+  },
+  "project.qmd": {
+    "project.html": "2bd36253"
+  },
+  "applications.qmd": {
+    "applications.html": "1d3cc9e7"
+  },
+  "references.qmd": {
+    "references.html": "6e7aed19"
+  }
+}

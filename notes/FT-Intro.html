@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="mariana v.">
+
+<title>Fourier Transform</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="FT-Intro_files/libs/clipboard/clipboard.min.js"></script>
+<script src="FT-Intro_files/libs/quarto-html/quarto.js"></script>
+<script src="FT-Intro_files/libs/quarto-html/popper.min.js"></script>
+<script src="FT-Intro_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="FT-Intro_files/libs/quarto-html/anchor.min.js"></script>
+<link href="FT-Intro_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="FT-Intro_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="FT-Intro_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="FT-Intro_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="FT-Intro_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Fourier Transform</h1>
+<p class="subtitle lead">What does it mean, why does it exist, how does it work, where is applied?</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>mariana v. </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">1/28/23</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1 unnumbered">
+<h1 class="unnumbered">Introduction</h1>
+<p>As part of Harmonic Analysis, Fourier Analysis is composed by four variants:</p>
+<ul>
+<li><pre><code>Fourier Series</code></pre></li>
+<li><pre><code>Fourier Transform</code></pre></li>
+<li><pre><code>Discrete-Time Fourier Transform</code></pre></li>
+<li><pre><code>Discrete Fourier transform</code></pre></li>
+</ul>
+<p>The current study session is dedicated to Fourier Transforms, after a diagonal assessment of google results, this mathematical tool seems to be a generalized form of a decomposition process, taking an input recorded from a temporal perspective, Time - Domain, to a filtered viewpoint of its components and attributes, Frequency-Domain.</p>
+<div style="page-break-after: always">
+
+</div>
+<p>The key differential element that distinguishes the Fourier Series from the Fourier Transform is the aspect of time. Is the input periodic as in within a range of time, or it not?</p>
+<p>The mathematical tool applicable non-periodic signals is the Fourier transform. For periodic signals the applicable approach is the Fourier Series. The first is derived from the latter extending the series to the non-periodic functions and avails the viewpoint in a sinusoidal formulation.</p>
+<p>In an attempt to process what I’ve learned so far, here it is an outlined scenario:</p>
+<ul>
+<li>Air pressure, occurs at rate x per second</li>
+<li>Considering a binary system of information categorized by the states :
+<ul>
+<li>on and off,</li>
+<li>when represented in terms of time and captured as a snapshot</li>
+<li>would possibly register as illustrated as:</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">state</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>        <span class="ex">on</span>  <span class="kw">|</span>        <span class="ex">_______</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>            <span class="kw">|</span>       <span class="kw">|</span>       <span class="kw">|</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="kw">|</span>       <span class="kw">|</span>       <span class="kw">|</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="ex">off</span> <span class="kw">|</span><span class="ex">_______</span><span class="kw">|</span><span class="ex">_______</span><span class="kw">|</span><span class="ex">___________</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            <span class="ex">0</span>       1       2       3      t in seconds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The previous abstraction suggests that a horizontal axis in a two-dimensional space, represents time, measure in seconds, and the vertical axis represents the state [0,1]</p>
+<p>Considering an input which alters its state once every two seconds: - The time period this vibrating body is 0.5 seconds - Being the “time period” the time of a full cycle - or the time it takes for the change between zero and one, given a moment.</p>
+<p>If we imagine this oscillation between states as point continuously moving through around a circle, the center of this circle representing the <em>off state</em>, and the radius <em>the on</em> state, the speed that takes the point over a full cycle around a circle, the movement from one state to the other, appears to be correlated with the shape of a wave, but wrapped around on itself.</p>
+<p>After a brief and modest “Eureka” moment, I started to grasp the following image:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://file%2B.vscode-resource.vscode-cdn.net/c%3A/Users/valdetar/journals/Ft-An-Overview/fig/Capturar.PNG?version%3D1674893596780" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Alt text</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="waves" class="level1 unnumbered">
+<h1 class="unnumbered unnumbered">Waves</h1>
+<ul>
+<li>Amplitude: maximum distance between the horizontal axis and the vertical position of the waveform.
+<ul>
+<li>A sine wave with an amplitude of 5 V, for example, has a maximum value of +5 V and a minimum value of –5 V<br>
+</li>
+</ul></li>
+<li>Frequency: how quickly the sinusoid completes full cycles
+<ul>
+<li>influences the maximum rate at which a sinusoidal signal can transmit information<br>
+</li>
+</ul></li>
+<li>Phase: the horizontal position of a waveform with respect to one cycle
+<ul>
+<li>Phase shift / Phase difference: signal is shifted to the left or right relative to another signal or to a theoretical reference signal</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="http://www.allaboutcircuits.com/uploads/articles/3.3_Characteristics_of_Sinusoidal_Signals3_.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Alt text</figcaption><p></p>
+</figure>
+</div>
+<p>An unmodified expression of the type f(x) = sin(x) or f(x) = cos(x) will produce a sinusoidal waveform, but how do we account for the fact that sinusoidal voltage and current signals have different amplitudes, frequencies, and phase shifts? these characteristics can be incorporated as parameters into mathematical expressions built around sin() or cos().</p>
+<p>Amplitude is denoted by the letter A, frequency by f, and phase by the Greek letter ϕ (phi). The independent variable is time, denoted by t. Everything is arranged as follows</p>
+<p><span class="math display">\[
+f(t)=Asin(2πft+ϕ) or f(t)=Acos(2πft+ϕ)\
+\]</span></p>
+</section>
+<section id="time-and-circles" class="level1 unnumbered">
+<h1 class="unnumbered unnumbered">Time and Circles</h1>
+<p>As mentioned before, physical phenomena evolving in time, in a re-cycling fashion, have a direct representation in the Time - Domain.</p>
+<p>Throughout history, Human civilizations have left us a lasting symbolism attached to circular shapes. Through drawing, cravings, books and foundations of mathematics. The patterns of celestial bodies in the sky, rivers flowing into oceans turn to rain and flooding rivers. Many dedicated their lives pursuing this powerful idea.</p>
+<p>Moreover, this circular idea is part of a “group” of concepts, along with: speed, time and distance.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://d1whtlypfis84e.cloudfront.net/guides/wp-content/uploads/2019/12/12092939/download-7-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Alt text</figcaption><p></p>
+</figure>
+</div>
+<p>To find the speed, we need distance traveled over some known time period. <span class="math display">\[Speed  =  Distance/Time\]</span> $<span class="math inline">\(S = d/t\)</span></p>
+<p>To find the distance, we need to know the time and speed of the object.</p>
+<p><span class="math display">\[Distance = Speed × Time\]</span> <span class="math display">\[d = s × t\]</span></p>
+<p>Time cam be computed in motion, to cover some distance with a known speed</p>
+<p><span class="math display">\[Time =  Distance/Speed\]</span> <span class="math display">\[t =  d/s\]</span></p>
+<pre><code>Speed is measured in the unit of a meter per second  
+i.e. ms−1. As distance is measured in meter and time is
+measured in seconds.</code></pre>
+<section id="dependency-and-variation" class="level2">
+<h2 class="anchored" data-anchor-id="dependency-and-variation">Dependency and variation</h2>
+<p>When <span class="math display">\[α
+, β
+and γ
+in αd2dt2x(t)+βddtx(t)+γx(t)=f(t)
+do not depend on the time, t, and in the absence of an external force, that is for free motion, time enters in (αd2dt2x(t)+βddtx(t)+γx(t)=f(t)\]</span> only through derivatives. Then the equation of motion has the form.</p>
+<p>αd2dt2x(t)+βddtx(t)+γx(t)=0(1.3.1)</p>
+</section>
+</section>
+<section id="motion" class="level1 unnumbered">
+<h1 class="unnumbered unnumbered">Motion</h1>
+<p>On what ground are the Fourier tools laid upon? The answer depends, of the desired output. As an introductory and naive approach, it seemed relevant to seek technical definitions, and understand the underlaying concepts of such core ideas. Sir Isaac Newton, in Philosophiæ Naturalis Principia Mathematica, based his description of planetary motions, introducion the notion of a medium allowing this particular set of dynamic interaction. %In his aether model, Newton describes aether as a medium that “flows” continually downward toward the Earth’s surface and is partially absorbed and partially diffused. This “circulation” of aether is what he associated the force of gravity with to help explain the action of gravity in a non-mechanical fashion. Kepler had a mystical belief that the circle was the Universe’s perfect shape, and that as a manifestation of Divine order, the planets’ orbits must be circular. For many years, he struggled to make Brahe’s observations of the motions of Mars match up with a circular orbit.</p>
+<p>Eventually, however, Kepler noticed that an imaginary line drawn from a planet to the Sun swept out an equal area of space in equal times, regardless of where the planet was in its orbit. If you draw a triangle out from the Sun to a planet’s position at one point in time and its position at a fixed time later—say, 5 hours, or 2 days—the area of that triangle is always the same, anywhere in the orbit. For all these triangles to have the same area, the planet must move more quickly when it is near the Sun, but more slowly when it is farthest from the Sun.</p>
+<p>This discovery (which became Kepler’s second law of orbital motion) led to the realization of what became Kepler’s first law: that the planets move in an ellipse (a squashed circle) with the Sun at one focus point, offset from the center.</p>
+<p>By unifying all motion, Newton shifted the scientific perspective to a search for large, unifying patterns in nature. Newton outlined his laws in Philosophiae Naturalis Principia Mathematica (“Mathematical Principles of Natural Philosophy,”) published in 1687.</p>
+<p>Law I. Every body perseveres in its state of rest, or of uniform motion in a right line, unless it is compelled to change that state by forces impressed theron.</p>
+<p>In essence, a moving object won’t change speed or direction, nor will a still object start moving, unless some outside force acts on it. The law is regularly summed up in one word: inertia.</p>
+<p>Law II. The alteration of motion is ever proportional to the motive force impressed; and is made in the direction of the right line in which that force is impressed.</p>
+<p>Newton’s second law is most recognizable in its mathematical form, the iconic equation: F=ma. The strength of the force (F) is defined by how much it changes the motion (acceleration, a) of an object with some mass (m).</p>
+<p>Law III. To every action there is always opposed an equal reaction: or the mutual actions of two bodies upon each other are always equal, and directed to contrary parts.</p>
+<p>As Newton himself described: “If you press a stone with your finger, the finger is also pressed by the stone.”</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://earthobservatory.nasa.gov/ContentFeature/OrbitsHistory/images/newton_comet_orbit.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Isaac Newton demonstrated his universal law of gravitation by showing that a comet visible during 1680 and 1681 followed the path of a parabola. [Adapted from Isaac Newton, 1687. Philosophiae Naturalis Principia Mathematica (“Mathematical Principles of Natural Philosophy.”)]</figcaption><p></p>
+</figure>
+</div>
+<p>Einstein and Relativity The ideas outlined in Newton’s laws of motion and universal gravitation stood unchallenged for nearly 220 years until Albert Einstein presented his theory of special relativity in 1905. Newton’s theory depended on the assumption that mass, time, and distance are constant regardless of where you measure them.</p>
+<p>The theory of relativity treats time, space, and mass as fluid things, defined by an observer’s frame of reference. All of us moving through the universe on the Earth are in a single frame of reference, but an astronaut in a fast-moving spaceship would be in a different reference frame.</p>
+</section>
+<section id="simetry" class="level1">
+<h1>Simetry</h1>
+<p><span class="citation" data-cites="curie1966symmetry">(<a href="#ref-curie1966symmetry" role="doc-biblioref"><strong>curie1966symmetry?</strong></a>)</span></p>
+</section>
+<section id="frequency" class="level1 unnumbered">
+<h1 class="unnumbered">Frequency</h1>
+<p>The Frequency - Domain,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://cdn8.openculture.com/2017/04/11003129/coltrane-circle-new.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Alt text</figcaption><p></p>
+</figure>
+</div>
+<p>«The primary evidence should not be interchanged with the evidence of the “axioms”; since the axioms are mostly the result already of an original formation of meaning and they already have this formation itself always behind them» [Husserl, The origin of Geometry, 1933].</p>
+<pre><code>- Amplitude: 
+    - positive: the height of the wave from 0
+    - negative: the height of the wave from bellow 0
+    - peak-to-peak: change between the highest and lowest amplitude
+- Wave length: distance between two points identical in height and slope</code></pre>
+<p>From the data above:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://study.com/cimages/multimages/16/waveperiodformula.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Alt text</figcaption><p></p>
+</figure>
+</div>
+<p>f=ω/2π f=v/λ f=1T</p>
+</section>
+<section id="waves-1" class="level1 unnumbered">
+<h1 class="unnumbered unnumbered">Waves</h1>
+<p>This brought me to seek a deeper understanding about waves, as shallow as it may be, contributed for the intuitive links that will follow: - the sine wave, and the higher the velocity around the circle, the higher the frequency.</p>
+<p>there are different ways to compute the frequency of a phenomena, in the context of this paper, the frequency of teh signal can be measured according the information or data available:</p>
+</section>
+<section id="pressure-waves" class="level1 unnumbered">
+<h1 class="unnumbered">Pressure Waves</h1>
+</section>
+<section id="series-to-transform" class="level1 unnumbered">
+<h1 class="unnumbered">Series to transform</h1>
+</section>
+<section id="circular-path" class="level1 unnumbered">
+<h1 class="unnumbered">Circular Path</h1>
+</section>
+<section id="reverse" class="level1 unnumbered">
+<h1 class="unnumbered">Reverse</h1>
+</section>
+<section id="fast-fourier-transform" class="level1 unnumbered">
+<h1 class="unnumbered">Fast Fourier Transform</h1>
+</section>
+<section id="ft-visualizations-c-julia" class="level1 unnumbered">
+<h1 class="unnumbered">FT Visualizations C Julia</h1>
+</section>
+<section id="small-program-wip" class="level1 unnumbered">
+<h1 class="unnumbered">Small program WIP</h1>
+</section>
+<section id="applications-in-signal-processing" class="level1 unnumbered">
+<h1 class="unnumbered">Applications in Signal Processing</h1>
+</section>
+<section id="others" class="level1 unnumbered">
+<h1 class="unnumbered">Others</h1>
+<p><span class="citation" data-cites="sadasiv1988arithmetic">(<a href="#ref-sadasiv1988arithmetic" role="doc-biblioref">Sadasiv 1988</a>)</span></p>
+<!-- this is a comment connntaining the running code to paste into the command line:
+pandoc -s -N --filter pandoc-crossref --bibliography 'bibliography.bib' --filter pandoc-citeproc FT-Intro.md -o FT.pdf
+-->
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-sadasiv1988arithmetic" class="csl-entry" role="doc-biblioentry">
+Sadasiv, G. 1988. <span>“The Arithmetic Fourier Transform.”</span> <em>IEEE ASSP Magazine</em> 5 (1): 13–17.
+</div>
+</div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

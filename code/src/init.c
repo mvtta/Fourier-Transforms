@@ -9,7 +9,7 @@ int main(int ac, char **av)
     int c, n;
     type_status *s;
 
-    gfx_open(N_SAMPLES, YSIZE, "fft - hello window");       /* create open screen xeyes xserver */
+    gfx_open(XSIZE, YSIZE, "fft - hello window");       /* create open screen xeyes xserver */
 
     s = NULL;
     s = malloc(sizeof(type_status));                        /* alloc and bzero,fix later  */

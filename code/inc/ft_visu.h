@@ -8,7 +8,7 @@
 #include <float.h>
 #include <time.h>
 #include <complex.h>
-/* #include <graphics.h> */
+#include <graphics.h>
 #include "../lib/minilibx/mlx.h"
 #include "../lib/libgfx/gfx.h"
 

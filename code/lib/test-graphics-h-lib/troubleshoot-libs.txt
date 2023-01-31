@@ -1,0 +1,9 @@
+install graphics lib: https://www.geeksforgeeks.org/add-graphics-h-c-library-gcc-compiler-linux/
+
+.h not found:
+https://askubuntu.com/questions/942863/trying-to-install-libgraph
+
+
+
+
+

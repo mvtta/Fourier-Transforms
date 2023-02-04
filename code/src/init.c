@@ -7,14 +7,14 @@ gcc -g src/init.c src/signal.c src/data.c  lib/libgfx/gfx.c inc/ft_visu.h lib/li
 int main(int ac, char **av)
 {
     int c, n;
-    type_status *s;
+    type_sample *s;
 
     gfx_open(XSIZE, YSIZE, "fft - hello window");       /* create open screen xeyes xserver */
 
     s = NULL;
-    s = malloc(sizeof(type_status));                        /* alloc and bzero,fix later  */
+    s = malloc(sizeof(type_sample));                        /* alloc and bzero,fix later  */
     for (n = 0; n < N_SAMPLES; n++)
-        s->fourier_transformed[n] = 0;
+        s->transformed[n] = 0;
 
     /* -----------------------------------
     keep window open waiting for cmds*/

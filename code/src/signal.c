@@ -19,25 +19,24 @@ void generate_wave(type_wave **wave)
     }
 }
 
-void generate_signal(type_status **input)
+void generate_signal(type_sample **input)
 {
     int i;
 
     /* this in a typedef pls */
-    static int f1 = 3;
-    static int f2 = 112;
-    static int f3 = 28;
+    static double f1 = 3;
+    static double f2 = 112;
+    static double f3 = 28;
 
-    static int amp1 = 46;
-    static int amp2 = 135;
-    static int amp3 = 1;
+    static double amp1 = 46;
+    static double amp2 = 135;
+    static double amp3 = 1;
 
     /* normalize to 1 second range? later, values were ending in zero
     discretize time after implementation*/
-    int signal[N_SAMPLES] = {0};
 }
 
-int *display_signal(type_status *s)
+int *display_signal(type_sample *s)
 {
     /* float pi = 3.1415926535897932384626433832795; */
     double pi = 3.1415;
@@ -47,10 +46,9 @@ int *display_signal(type_status *s)
     int signal_lowbase_y = 550;
     int signal_lowheight = 400;
     /* iterators */
-    int i, n, y, k, angle;
+    int i, n, k, angle;
+    float y;
     /* signal data */
-    int signal[N_SAMPLES][N_SAMPLES] = {0};
-    int transform[N_SAMPLES] = {0};
 
     /* display operations
     _____________________________________ */
@@ -61,120 +59,50 @@ int *display_signal(type_status *s)
     gfx_color(50, 50, 250);
     gfx_line(0, YSIZE -150,XSIZE, YSIZE-150);/* mark frequency-domain axis*/
 
-
-    /* Notes on 
-    generation waves/signals and the use of phi and twiddle
-    ref->
-     ------------------------------------------------------------------- */
-
-    /* generate 3 sines and add them to compose signal
-       plus draw signal and save points in an array
-       a small function like void generate_wave(type_wave **wave);
-       would be cleaner
-    */
-    /*
-       float angle = pi*((float) group+1)/step_d;
-       twiddle_re = cos(angle);
-       twiddle_im = sin(angle);
-     } */
-
-    /* ------------------------------------------------------------------- */
-    /*
-    simple sine wave formula:
-     λ lambda
-     Φ phi
-     Ω pmega
-     δ delta
-     φ phi (2?) - phase
-     π pi
-
-    y(t)= A * sin(2 * π * f * t + φ)
-
-    Amplitude (A)— we can use it as a volume
-    Frequency (f)— how many cycles per second it does
-    Phase (phi)— starting point of sine wave
-    Time (t)— just a time counter value (in our case)
-
-     ------------------------------------------------------------------- */
-
-    float m_amplitude;
-    float m_frequency;
-    float m_phase;
-    float m_time;
-    float m_deltaTime;
-    float s_sample_rate;
-    float sine1, sine2, sine3;
-
-    static int f1 = 500;
-    static int f2 = 1000;
-    static int f3 = 0;
-    //float fs = 50 * (max(f1, f2, f2));
-    //float T = 0.0;
-    //float t = 0 : 1/fd : T;
-
-
-    static int amp1 = 10;
-    static int amp2 = 0;
-    static int amp3 = 0;
-
-    /* ----------------------------------------- 
-    I'm still doing absolute nonsense with the values, 
-    have to choose either a range of pi mult or 0/1 or real adjusted to screen 
-    (bad idea yet current one)
-    plus clean this code pls
-    ----------------------------------------- */
-
-    // initialize new discrete range kinda values
-    m_amplitude = 50;
-    m_frequency = 20;
-    m_phase = 0.0;
-    m_time = 0.0;
-    s_sample_rate = 200;
-    m_deltaTime = 1 / s_sample_rate;
-    int fft;
-    int frequency, fs, phaseInc;
-    fs = 44100;
-    float angular_frequency;
-
+    float fs = 44100;
+    int frequency = 20; 
+    int amplitude = 10; 
     float a;
-    //complex a;
+    float t;
+    complex j = I;
+    int sine1 = 0;
+
 
     for (i = 0; i < N_SAMPLES - 1; i += 1)
     {
-        sine1 = m_amplitude * sin((m_time * 2 * pi * s_sample_rate) + 5);
-        printf("sine1:%f\n", sine1); /* var radians is not so hard to do... */
-        //m_phas""e = m_phase + phaseInc;
-        m_time +=1;
+
+        y = amplitude * sin(frequency + a * (M_PI / 180)); /* var radians is not so hard to do... */
+        a += 5;
         s->signal[i] = y;
-/* sine2 = amp2 * sin(f2 * a * (3.141 / 180) * m_time + m_phase)var radians is not so hard to do... */
-/*sine3 = amp3 * sin(f3 * a * (3.141 / 180) * m_time + m_phase);  var radians is not so hard to do... */
         gfx_color(240, 100, 140);
         gfx_point(i, 150 - sine1);
-        y = sine1;
         gfx_color(250, 250, 250);
         gfx_point(i, 150 - y);
     }
-    complex j;
 
-    int inv_samples = N_SAMPLES;
+    s->transformed[n] = 0;
     for (n = 0; n < N_SAMPLES - 1; n+=1)
     {       
         for (k = 0; k < N_SAMPLES - 1; k+=1)
         {
-            double theta = -(pi/180) * n * k / N_SAMPLES;
-             s->fourier_transformed[n] += s->signal[k] * (int)theta % N_SAMPLES; /* 𝐞 ^ [ 𝑗 × 2 × 𝑝𝑖 × ⟮ 𝑘 / 𝑁_𝑆𝐴𝑀𝑃𝐿𝐸𝑆 ⟯ × 𝑛 ] */
-             /* printf("sample:%d  |   transform:%d\n", s->signal[n], s->fourier_transformed[n]); */ 
+            s->transformed[n] += - 2.0 * M_PI/s->signal[k]; // now attempting with complex j
         }
+        s->transformed[n] = s->transformed[n] / N_SAMPLES;
         gfx_color(250, 250, 250);
-        if (s->fourier_transformed[n] > 0)
+        if (s->transformed[n])
         {
-
-            printf("freq:%d |   sample:%d  |   transform:%d\n", s->fourier_transformed[n]/n, s->signal[n], s->fourier_transformed[n]);
-            /* gfx_line(0, YSIZE -150,XSIZE, YSIZE-150); freq axis*/
-            gfx_line(n, YSIZE - 150, n , YSIZE - 50 - (int)s->fourier_transformed[n]);
+            printf("freq:%f |   sample:%f  |   transform:%f\n", s->transformed[n] / N_SAMPLES, s->signal[n], s->transformed[n]); // this seems to work really well, imp impressed
+            gfx_line((s->transformed[n]) * 1000, YSIZE /2,(s->transformed[n] * 1000), YSIZE /2 - (amplitude * 10));
         }
     }
 
+/* --------------
+    todo: define x axis of time frequency rate / dimension / position
+    + 
+    generate signal mode freq's
+    test if indeed results are good
+    tada!
+----------------- */
 
 /* Euler identity:
  {\displaystyle e^{ix}=\cos x+i\sin x}
@@ -323,3 +251,49 @@ U+22Cx	⋀	⋁	⋂	⋃	⋄	⋅	⋆	⋇	⋈	⋉	⋊	⋋	⋌	⋍	⋎	⋏
 U+22Dx	⋐	⋑	⋒	⋓	⋔	⋕	⋖	⋗	⋘	⋙	⋚	⋛	⋜	⋝	⋞	⋟
 U+22Ex	⋠	⋡	⋢	⋣	⋤	⋥	⋦	⋧	⋨	⋩	⋪	⋫	⋬	⋭	⋮	⋯
 U+22Fx	⋰	⋱	⋲	⋳	⋴	⋵	⋶	⋷	⋸	⋹	⋺	⋻	⋼	⋽	⋾	⋿ */
+
+
+
+
+    /* Notes on 
+    generation waves/signals and the use of phi and twiddle
+    ref->
+     ------------------------------------------------------------------- */
+
+    /* generate 3 sines and add them to compose signal
+       plus draw signal and save points in an array
+       a small function like void generate_wave(type_wave **wave);
+       would be cleaner
+    */
+    /*
+       float angle = pi*((float) group+1)/step_d;
+       twiddle_re = cos(angle);
+       twiddle_im = sin(angle);
+     } */
+
+    /* ------------------------------------------------------------------- */
+    /*
+    simple sine wave formula:
+     λ lambda
+     Φ phi
+     Ω pmega
+     δ delta
+     φ phi (2?) - phase
+     π pi
+
+    y(t)= A * sin(2 * π * f * t + φ)
+
+    Amplitude (A)— we can use it as a volume
+    Frequency (f)— how many cycles per second it does
+    Phase (phi)— starting point of sine wave
+    Time (t)— just a time counter value (in our case)
+
+     ------------------------------------------------------------------- */
+
+
+    /* ----------------------------------------- 
+    I'm still doing absolute nonsense with the values, 
+    have to choose either a range of pi mult or 0/1 or real adjusted to screen 
+    (bad idea yet current one)
+    plus clean this code pls
+    ----------------------------------------- */

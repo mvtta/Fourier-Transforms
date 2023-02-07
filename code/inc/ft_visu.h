@@ -13,8 +13,8 @@
 #include "../lib/minilibx/mlx.h"
 #include "../lib/libgfx/gfx.h"
 
-#define N_SAMPLES 2000
-#define XSIZE 2000
+#define N_SAMPLES 2364
+#define XSIZE 2364
 #define YSIZE 1768
 #define A 40
 

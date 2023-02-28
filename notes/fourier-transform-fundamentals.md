@@ -4,16 +4,18 @@
 
 Context
 
-    The following pages are simple, organized notes, logged while studying.
+    
+    The following pages are simple, unorganized notes logged while studying.   
+    
     
     ** Due to the time constraints, several revisions and editing should follow, at the present moment is in "as is" stage.
 
 Motivation
 
-The topic is explored in the context of a weeks studying, alike an essay on a subject. 
+The topic is explored in the context of weeks of studying, like an essay on a subject. 
 with prior knowledge, solely a vague notion in a graphical context. 
 The reason why I chose this subject from the three proposed:
-comes from personal desire to learn, in order to one day, possibly ingress in a formal academic degree, and dedicate my life to research. Moreover, following the logical premise "generalized before specialize", the Fourier Transform, Series and Analysis, appear to be closely related with the "left out" topics. I hope by the end of this week find, in this newly acquired knowledge, a common thread between them. 
+comes from a personal desire to learn, in order to one day, possibly ingress in a formal academic degree, and dedicate my life to research. Moreover, following the logical premise "generalized before specialize", the Fourier Transform, Series, and Analysis appear to be closely related to the "left out" topics. I hope by the end of this week find, in this newly acquired knowledge, a common thread between them.
 
 The given parameters of the task at hand were composed by three aspects:
 

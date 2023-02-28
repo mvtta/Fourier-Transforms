@@ -1,0 +1,118 @@
+16/02/2023 14:04:37 passing arg to libvncserver: -nevershared
+16/02/2023 14:04:37 passing arg to libvncserver: -rfbport
+16/02/2023 14:04:37 passing arg to libvncserver: 5900
+16/02/2023 14:04:37 passing arg to libvncserver: -rfbportv6
+16/02/2023 14:04:37 passing arg to libvncserver: -1
+###############################################################
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#@                                                           @#
+#@  **  WARNING  **  WARNING  **  WARNING  **  WARNING  **   @#
+#@                                                           @#
+#@        YOU ARE RUNNING X11VNC WITHOUT A PASSWORD!!        @#
+#@                                                           @#
+#@  This means anyone with network access to this computer   @#
+#@  may be able to view and control your desktop.            @#
+#@                                                           @#
+#@ >>> If you did not mean to do this Press CTRL-C now!! <<< @#
+#@                                                           @#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+#@                                                           @#
+#@  You can create an x11vnc password file by running:       @#
+#@                                                           @#
+#@       x11vnc -storepasswd password /path/to/passfile      @#
+#@  or   x11vnc -storepasswd /path/to/passfile               @#
+#@  or   x11vnc -storepasswd                                 @#
+#@                                                           @#
+#@  (the last one will use ~/.vnc/passwd)                    @#
+#@                                                           @#
+#@  and then starting x11vnc via:                            @#
+#@                                                           @#
+#@      x11vnc -rfbauth /path/to/passfile                    @#
+#@                                                           @#
+#@  an existing ~/.vnc/passwd file from another VNC          @#
+#@  application will work fine too.                          @#
+#@                                                           @#
+#@  You can also use the -passwdfile or -passwd options.     @#
+#@  (note -passwd is unsafe if local users are not trusted)  @#
+#@                                                           @#
+#@  Make sure any -rfbauth and -passwdfile password files    @#
+#@  cannot be read by untrusted users.                       @#
+#@                                                           @#
+#@  Use x11vnc -usepw to automatically use your              @#
+#@  ~/.vnc/passwd or ~/.vnc/passwdfile password files.       @#
+#@  (and prompt you to create ~/.vnc/passwd if neither       @#
+#@  file exists.)  Under -usepw, x11vnc will exit if it      @#
+#@  cannot find a password to use.                           @#
+#@                                                           @#
+#@                                                           @#
+#@  Even with a password, the subsequent VNC traffic is      @#
+#@  sent in the clear.  Consider tunnelling via ssh(1):      @#
+#@                                                           @#
+#@    http://www.karlrunge.com/x11vnc/#tunnelling            @#
+#@                                                           @#
+#@  Or using the x11vnc SSL options: -ssl and -stunnel       @#
+#@                                                           @#
+#@  Please Read the documentation for more info about        @#
+#@  passwords, security, and encryption.                     @#
+#@                                                           @#
+#@    http://www.karlrunge.com/x11vnc/faq.html#faq-passwd    @#
+#@                                                           @#
+#@  To disable this warning use the -nopw option, or put     @#
+#@  'nopw' on a line in your ~/.x11vncrc file.               @#
+#@                                                           @#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+###############################################################
+16/02/2023 14:04:38 x11vnc version: 0.9.16 lastmod: 2019-01-05  pid: 3086
+16/02/2023 14:04:38 
+16/02/2023 14:04:38 WARNING: DISPLAY might not be local: '172.18.176.1:0'
+16/02/2023 14:04:38 WARNING: Is this the DISPLAY of another machine?  Usually,
+16/02/2023 14:04:38 WARNING: x11vnc is run on the same machine with the
+16/02/2023 14:04:38 WARNING: physical X display to be exported by VNC.  If
+16/02/2023 14:04:38 WARNING: that is what you really meant, supply something
+16/02/2023 14:04:38 WARNING: like: -display :0  on the x11vnc command line.
+16/02/2023 14:04:38 
+16/02/2023 14:04:42 Using X display 172.18.176.1:0
+16/02/2023 14:04:42 rootwin: 0xcd reswin: 0x200001 dpy: 0xf9b69e40
+16/02/2023 14:04:42 
+16/02/2023 14:04:42 ------------------ USEFUL INFORMATION ------------------
+16/02/2023 14:04:42 X DAMAGE available on display, using it for polling hints.
+16/02/2023 14:04:42   To disable this behavior use: '-noxdamage'
+16/02/2023 14:04:42 
+16/02/2023 14:04:42   Most compositing window managers like 'compiz' or 'beryl'
+16/02/2023 14:04:42   cause X DAMAGE to fail, and so you may not see any screen
+16/02/2023 14:04:42   updates via VNC.  Either disable 'compiz' (recommended) or
+16/02/2023 14:04:42   supply the x11vnc '-noxdamage' command line option.
+16/02/2023 14:04:42 
+16/02/2023 14:04:42 Wireframing: -wireframe mode is in effect for window moves.
+16/02/2023 14:04:42   If this yields undesired behavior (poor response, painting
+16/02/2023 14:04:42   errors, etc) it may be disabled:
+16/02/2023 14:04:42    - use '-nowf' to disable wireframing completely.
+16/02/2023 14:04:42    - use '-nowcr' to disable the Copy Rectangle after the
+16/02/2023 14:04:42      moved window is released in the new position.
+16/02/2023 14:04:42   Also see the -help entry for tuning parameters.
+16/02/2023 14:04:42   You can press 3 Alt_L's (Left "Alt" key) in a row to 
+16/02/2023 14:04:42   repaint the screen, also see the -fixscreen option for
+16/02/2023 14:04:42   periodic repaints.
+16/02/2023 14:04:42 
+16/02/2023 14:04:42 XFIXES available on display, resetting cursor mode
+16/02/2023 14:04:42   to: '-cursor most'.
+16/02/2023 14:04:42   to disable this behavior use: '-cursor arrow'
+16/02/2023 14:04:42   or '-noxfixes'.
+16/02/2023 14:04:42 using XFIXES for cursor drawing.
+16/02/2023 14:04:42 GrabServer control via XTEST.
+16/02/2023 14:05:08 
+16/02/2023 14:05:08 Scroll Detection: -scrollcopyrect mode is in effect to
+16/02/2023 14:05:08   use RECORD extension to try to detect scrolling windows
+16/02/2023 14:05:08   (induced by either user keystroke or mouse input).
+16/02/2023 14:05:08   If this yields undesired behavior (poor response, painting
+16/02/2023 14:05:08   errors, etc) it may be disabled via: '-noscr'
+16/02/2023 14:05:08   Also see the -help entry for tuning parameters.
+16/02/2023 14:05:08   You can press 3 Alt_L's (Left "Alt" key) in a row to 
+16/02/2023 14:05:08   repaint the screen, also see the -fixscreen option for
+16/02/2023 14:05:08   periodic repaints.
+16/02/2023 14:05:08 
+16/02/2023 14:05:08 warning: XShm extension is not available.
+16/02/2023 14:05:08 For best performance the X Display should be local. (i.e.
+16/02/2023 14:05:08 the x11vnc and X server processes should be running on
+16/02/2023 14:05:08 the same machine.)
+16/02/2023 14:05:08 Restart with -noshm to override this.

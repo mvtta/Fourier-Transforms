@@ -1,0 +1,46 @@
+As part of Harmonic Analysis, Fourier Analysis is composed by four variants:
+
+-   
+
+        Fourier Series
+
+-   
+
+        Fourier Transform
+
+-   
+
+        Discrete-Time Fourier Transform
+
+-   
+
+        Discrete Fourier transform
+
+The current study session is dedicated to Fourier Transforms, a beautiful mathematical generalized tool of a decomposition process, taking an input recorded from a temporal perspective, Time Domain, to a filtered viewpoint of its components and attributes, Frequency Domain.
+
+Here it is an outlined scenario:
+
+-   Air pressure, occurs at rate x per second
+-   Considering a binary system of information categorized by the states :
+    -   on and off,
+    -   when represented in terms of time and captured as a snapshot
+    -   would possibly register as illustrated as:
+
+``` bash
+state
+        on  |        _______
+            |       |       |
+            |       |       |
+        off |_______|_______|___________ 
+            0       1       2       3      t in seconds
+```
+
+The previous abstraction suggests that a horizontal axis in a two-dimensional space, represents time, measure in seconds, and the vertical axis represents the state \[0,1\]
+
+Considering an input which alters its state once every two seconds: - The time period this vibrating body is 0.5 seconds - Being the "time period" the time of a full cycle - or the time it takes for the change between zero and one, given a moment.
+
+If we imagine this oscillation between states as point continuously moving through around a circle, the center of this circle representing the *off state*, and the radius *the on* state, the speed that takes the point over a full cycle around a circle, the movement from one state to the other, appears to be correlated with the shape of a wave, but wrapped around on itself.
+
+Intuition behind the following image:
+
+![Alt text](https://file%252B.vscode-resource.vscode-cdn.net/c%253A/Users/valdetar/journals/Ft-An-Overview/fig/Capturar.PNG?version%253D1674893596780)

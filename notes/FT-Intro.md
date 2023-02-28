@@ -27,7 +27,7 @@ As part of Harmonic Analysis, Fourier Analysis is composed by four variants:
 -     Discrete-Time Fourier Transform
 -     Discrete Fourier transform
 
-The current study session is dedicated to Fourier Transforms, after a diagonal assessment of google results, this mathematical tool seems to be a generalized form of a decomposition process, taking an input recorded from a temporal perspective, Time - Domain, to a filtered viewpoint of its components and attributes, Frequency-Domain.
+The current study session is dedicated to Fourier Transforms, a beautiful mathematical generalized tool of a decomposition process, taking an input recorded from a temporal perspective, Time Domain, to a filtered viewpoint of its components and attributes, Frequency Domain.
 
 
 
@@ -192,7 +192,7 @@ The theory of relativity treats time, space, and mass as fluid things, defined b
 
 
 
-# Simetry 
+# Symmetry 
 
 [@curie1966symmetry]
 

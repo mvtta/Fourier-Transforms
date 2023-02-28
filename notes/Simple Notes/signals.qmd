@@ -1,0 +1,17 @@
+sinusoldal signal receptors are commonly found in various forms in nature, thr inner ear of mammals, called cochlea, detecs air pressure sunusoids and frquencies between 20 and 20 khz.
+The HUman retina also is sensitive to electromagnetic sinusois in a 430THz - 790THz range.  
+
+the hability do detect sinusoidal  signals is intrinsicly related with performin a Fourier transoform, after all, science is the art od observation, deductiion and induction.
+
+Signals aren't often pure as a sinusoid, and normaly are composed by diferent frquenc ressonations. The human ear, the cochlea, can receive at the "same time" varying inputs, and for example the brain, is somehow instuitivle able to decompose input into differen elements within the range of available perception.
+
+Many have wondered if it would be possible to capture these signals and find it's elements, but in a time domain, pressure waves contain artifacts, and if register and then plotted, the shape it draws is rendered complex and even chaotic, like an array of montains in the horizon.
+
+Decomposition of any signal into sinusoidal elements, can intuitivle be deduced as some sort of filtering processing. 
+Therefore, signal processing must include a method to implemet teh right filters for the elements relevan for teh analysi at hand. 
+
+The importance of the right filter for each case can be illustrate by takin a milkshake, made by blending banana and other fruits, to detect teh fruit banana, this diseign filter for such has to be included in the method, other wise dillution of this element can "mask" the rest of the elelemnts. 
+
+Stil on thi milkshake idea, a extremely imporat concept,  the time-invarience, represents a core configurationof signal procesing. After decomposing a milksahe into it's recipe, all its components can then be again blended togheter no matter the order in which the elementes are inserted. 
+
+From an Synthetizing prepective, blending ingredients into the smoothie represents tgoing from the frequency domain to the time domain, and from an alanytical stand point, finding the elements of the recipe is mpving from the time domain to a frquency domain.

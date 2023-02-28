@@ -1,5 +1,7 @@
 #include "../inc/ft_visu.h"
 #include <complex.h>
+#include <time.h>
+
 
 void new_wave(type_wave **wave)
 {
@@ -36,94 +38,212 @@ void generate_signal(type_sample **input)
     discretize time after implementation*/
 }
 
-int *display_signal(type_sample *s)
+
+void create_axis(type_signal *s, type_image *img)
 {
-    /* float pi = 3.1415926535897932384626433832795; */
-    double pi = 3.1415;
-    /* def screen placmeent + draw axis*/
-    int signal_base_y = 150;
-    int signal_height = 50;
-    int signal_lowbase_y = 550;
-    int signal_lowheight = 400;
+    s->wave.angle = 0;
+    s->wave.iter = 0;
+    for (int i = 0; i < N_SAMPLES - 1; i += 1)
+    {
+        s->wave.iter = s->wave.amplitude * \
+        sin(s->wave.freq + s->wave.angle * (M_PI / 180));
+        s->wave.angle += 5;
+        s->sample.signal[i] = s->wave.iter;
+    }
+    return;
+}
+
+
+void discrete_to_screen(type_image *img, int old_x, int old_y, int i)
+{
+    int width_new = img->screen_x;
+    int height_new = img->screen_y;
+    img->scaled_x = (old_x * width_new)/M_PI;
+    img->scaled_y = (old_y * height_new)/20;
+    return;
+}
+
+void sample_signal(type_signal *s, type_image *img)
+{
+    s->wave.angle = 0;
+    s->wave.iter = 0;
+    srand(time(0));
+    for (int i = 0; i < N_SAMPLES - 1; i += 1)
+    {
+        s->wave.iter = s->wave.amplitude * \
+        sinf(s->wave.freq + s->wave.angle * (M_PI / 180));
+        s->wave.angle += 5;
+        s->sample.signal[i] = s->wave.iter;
+
+        mlx_pixel_put(img->mlx,img->win, i, (img->screen_y - 300) - s->wave.iter, BLUE);
+    }
+    return;
+/*     srand(time(0));
+    for (double n=0 ; n < img->screen_x - 1 ; n += 1)
+    {
+        for (int i = 0; i< N_SAMPLES -1; i++)
+        {
+
+        s->sample.signal[i] = s->wave.amplitude * \
+        sin(s->wave.freq + s->wave.angle * (M_PI / 180));
+        s->wave.angle += 5;
+        mlx_pixel_put(img->mlx,img->win, , img->screen_y - (300) - s->sample.signal[i], RED);
+
+        }
+    }  */
+}
+
+
+void draw_segments(type_image *img, int origin, int direction, int color)
+{
+    for(int i = 0; i <= direction; i++)
+    {
+       // mlx_pixel_put(img->mlx, img->win, origin, i, color);
+    }
+    return;
+}
+
+void create_panes()
+{
+    return;
+}
+
+void draw_wave()
+{
+    return;
+}
+
+static void mark_axis_freq(type_image *img)
+{
+    char *values;
+    values = "| ";
+    char buffer [sizeof(int)*8+1];
+     
+    for(int i = 0; i <=XSIZE-1; i++)
+    {         
+                if (i%100==0)
+                {
+                    sprintf(buffer, "%d", i);
+                    mlx_string_put(img->mlx, img->win, i, img->screen_y - 80, YELLOW, buffer);
+                }
+                    
+    }
+    return;
+}
+
+void display_dft(type_signal *s, type_image *img)
+{
+    for(int i = 0; i < img->screen_x - 1; i++)
+    {
+        mark_axis_freq(img);
+        mlx_pixel_put(img->mlx, img->win, i, img->screen_y - 100 - CLAMP_MAX(s->sample.transformed[i]/1100), RED);
+    }
+    return;
+}
+
+int *display_signal(type_signal *s, type_image *img)
+{
+
     /* iterators */
     int i, n, k, angle;
-    float y;
-    /* signal data */
-
-    /* display operations
-    _____________________________________ */
-    gfx_color(50, 50, 250);
-    gfx_line(0, signal_base_y, XSIZE, signal_base_y); /* mark time-domain axis */
-    gfx_color(0, 250, 100);
-    gfx_line(0, YSIZE / 2, XSIZE, YSIZE / 2); /* mark half screen axis*/
-    gfx_color(50, 50, 250);
-    gfx_line(0, YSIZE - 150, XSIZE, YSIZE - 150); /* mark frequency-domain axis*/
-
-    float fs = 44100;
-    int frequency = 100;
-    int sr = 10000;
-    int amplitude = 40;
-    float a;
-    float t;
-    complex j = I;
-    int sine1 = 0;
-    double omega;
+ 
+    int     frequency = 500;
+    int     amplitude = 40;
+    int     sine1 = 0;
+    int     sr = 10000;
+    float   fs = 44100;
+    float   a, b;
+    float   t;
+    float   y;
+    double  omega;
+    complex j;
+    complex double x[N_SAMPLES];   // complex-valued discrete-time signal
+    complex double X[N_SAMPLES];   // complex-valued frequency-domain samples
+    s->sample.real_[N_SAMPLES] = 0;
+    s->sample.imaginary_[N_SAMPLES] =0 ;
+    s->sample.transformed[N_SAMPLES] = 0;
+    s->sample.screen_time[N_SAMPLES] = 0;
+    int to_sin = 3*N_SAMPLES/4;
+    j = I;
     omega = (2 * M_PI / n) / sr;
-    for (i = 0; i < N_SAMPLES - 1; i += 1)
-    {
+  
+    mlx_string_put(img->mlx, img->win,XSIZE/2 - 1,20, GREY, "DFT");
+    mlx_string_put(img->mlx, img->win, 20, img->screen_y - 250, RED, "time domain");
 
-        y = amplitude * sin(frequency + a * (M_PI / 180));
-        // y = amplitude * sin((2 * M_PI * i * frequency)/N_SAMPLES); /* var radians is not so hard to do... */
-        // y = amplitude * sin(frequency + a * (M_PI / 180));
-        /* vworking kinda*/
-        a += 5;
-        s->signal[i] = y;
-        gfx_color(240, 100, 140);
-        gfx_point(i, 150 - y);
-        gfx_color(250, 250, 250);
-        gfx_point(i, 150 - y);
+    for (i = 0; i < img->screen_x - 1; i += 1)
+    { 
+        mlx_pixel_put(img->mlx,img->win, i, img->screen_y - 100, BLUE);
+        mlx_pixel_put(img->mlx,img->win, i, img->screen_y - 300, BLUE);
     }
-
-    // my range of frequency spectrum is from C64
-    s->transformed[n] = 0;
-    // double omega;
-    n = 0;
-    for (n = 0; n < N_SAMPLES - 1; n += 1)
+    mlx_string_put(img->mlx, img->win, 20, img->screen_y - 50, RED, "frequency domain");
+    sample_signal(s, img);
+    s->sample.transformed[N_SAMPLES] = 0;
+    s->sample.real_[N_SAMPLES] = 0;
+    float transformed[N_SAMPLES];
+   
+    for (k = 0; k < N_SAMPLES -1; k += 1)
     {
-        for (k = 0; k < N_SAMPLES - 1; k += 1)
+        s->sample.real_[k] = 0;
+        for (n = 0; n < N_SAMPLES - 1; n += 1)
         {
-            s->transformed[n] += cos(2 * M_PI / N_SAMPLES * s->signal[n]*s->signal[k]) - sin(2 * M_PI / N_SAMPLES * s->signal[n]*s->signal[k]);
-  /*           omega = (2 * M_PI / N_SAMPLES) / sr;
-            s->transformed[n] += cos(omega * n + 0 + s->signal[k]); */
+            s->sample.real_[k] += s->sample.signal[n] * cosf(n * k * 2 * M_PI / N_SAMPLES);
+            s->sample.imaginary_[k] = 0;
+            for(n = 0; n< N_SAMPLES - 1; n++)
+                s->sample.imaginary_[k] -= s->sample.signal[n] * sinf(n * k * 2 * M_PI / N_SAMPLES);
         }
-        gfx_color(250, 250, 250);
-        n = 0;
-        for(n = 0; n < N_SAMPLES - 1; n+=100)
-        {
-            printf("freq:%f |   sample:%f  |   transform:%f\n", fabs(s->transformed[n]/N_SAMPLES * 1000), s->signal[n], s->transformed[n]); // this seems to work really well, imp impressed
-            gfx_line(abs(s->transformed[n]/N_SAMPLES * 1000), YSIZE / 2, fabs(s->transformed[n]/N_SAMPLES * 1000), YSIZE / 2 -(10*amplitude));
-            if (n % 100 == 0)
-                gfx_line(n +100, YSIZE / 2 + 70, n + 100, YSIZE / 2 +80);
-
-
-        }
+            s->sample.transformed[k] = (s->sample.real_[k] * s->sample.real_[k]) + ( s->sample.imaginary_[k] * s->sample.imaginary_[k]);
+           // s->sample.transformed[n] = (s->sample.real_[n] * s->sample.real_[n]) + ( s->sample.imaginary_[n] * s->sample.imaginary_[n]);
+            printf("i: %d - transf: %f - /1100 : %f\n",  k, s->sample.transformed[k],s->sample.transformed[k]/1100);
     }
-    /*    for (n=0; n < N_SAMPLES - 1; n+=1)
-       {
-           for (k = 0; k < N_SAMPLES - 1; k+=1)
-           {
-               s->transformed[n] += - 2.0 * M_PI/s->signal[k];
-           }
-           s->transformed[n] = s->transformed[n] / N_SAMPLES;
-           gfx_color(250, 250, 250);
-           if (s->transformed[n])
-           {
-               printf("freq:%f |   sample:%f  |   transform:%f\n", s->transformed[n] * N_SAMPLES, s->signal[n], s->transformed[n]); // this seems to work really well, imp impressed
-               gfx_line((s->transformed[n]) * 1000, YSIZE /2,(s->transformed[n] * 1000), YSIZE /2 - (amplitude * 10));
-           }
-       } */
+   display_dft(s,img);
+}
+  
 
-    /* --------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* *************************************************************************************** */
+    /* ------ENDLESS NOTES TO SORT --------
         todo: define x axis of time frequency rate / dimension / position
         +
         generate signal mode freq's

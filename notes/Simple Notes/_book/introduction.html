@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -115,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./time.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">time.html</span></a>
+  <a href="./time.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Dependency and variation</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -130,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./symetry.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">symetry.html</span></a>
+  <a href="./symmetry.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">symmetry.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -198,6 +261,40 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<p>As part of Harmonic Analysis, Fourier Analysis is composed by four variants:</p>
+<ul>
+<li><pre><code>Fourier Series</code></pre></li>
+<li><pre><code>Fourier Transform</code></pre></li>
+<li><pre><code>Discrete-Time Fourier Transform</code></pre></li>
+<li><pre><code>Discrete Fourier transform</code></pre></li>
+</ul>
+<p>The current study session is dedicated to Fourier Transforms, a beautiful mathematical generalized tool of a decomposition process, taking an input recorded from a temporal perspective, Time Domain, to a filtered viewpoint of its components and attributes, Frequency Domain.</p>
+<p>Here it is an outlined scenario:</p>
+<ul>
+<li>Air pressure, occurs at rate x per second</li>
+<li>Considering a binary system of information categorized by the states :
+<ul>
+<li>on and off,</li>
+<li>when represented in terms of time and captured as a snapshot</li>
+<li>would possibly register as illustrated as:</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">state</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>        <span class="ex">on</span>  <span class="kw">|</span>        <span class="ex">_______</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>            <span class="kw">|</span>       <span class="kw">|</span>       <span class="kw">|</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="kw">|</span>       <span class="kw">|</span>       <span class="kw">|</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="ex">off</span> <span class="kw">|</span><span class="ex">_______</span><span class="kw">|</span><span class="ex">_______</span><span class="kw">|</span><span class="ex">___________</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            <span class="ex">0</span>       1       2       3      t in seconds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The previous abstraction suggests that a horizontal axis in a two-dimensional space, represents time, measure in seconds, and the vertical axis represents the state [0,1]</p>
+<p>Considering an input which alters its state once every two seconds: - The time period this vibrating body is 0.5 seconds - Being the “time period” the time of a full cycle - or the time it takes for the change between zero and one, given a moment.</p>
+<p>If we imagine this oscillation between states as point continuously moving through around a circle, the center of this circle representing the <em>off state</em>, and the radius <em>the on</em> state, the speed that takes the point over a full cycle around a circle, the movement from one state to the other, appears to be correlated with the shape of a wave, but wrapped around on itself.</p>
+<p>Intuition behind the following image:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://file%252B.vscode-resource.vscode-cdn.net/c%253A/Users/valdetar/journals/Ft-An-Overview/fig/Capturar.PNG?version%253D1674893596780" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Alt text</figcaption><p></p>
+</figure>
+</div>
 
 
 
@@ -343,7 +440,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./time.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">time.html</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Dependency and variation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

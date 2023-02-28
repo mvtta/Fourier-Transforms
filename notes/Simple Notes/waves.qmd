@@ -3,3 +3,28 @@
 By Vigneshdm1990 - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=86332943
 
 \wikipedia\commons\9\92\Phase_shifter_using_IQ_modulator.gif
+
+
+
+* Amplitude: maximum distance between
+     the horizontal axis and the vertical position of the waveform.
+     * A sine wave with an amplitude
+     of 5 V, for example, has a maximum value of +5 V and a minimum value of –5 V  
+* Frequency: how quickly the sinusoid completes full cycles
+    * influences the maximum rate at which a sinusoidal signal can transmit information  
+* Phase: the horizontal position of a waveform with
+    respect to one cycle  
+    * Phase shift / Phase difference: signal is shifted
+           to the left or right relative to another signal or to a theoretical reference signal  
+
+![Alt text](http://www.allaboutcircuits.com/uploads/articles/3.3_Characteristics_of_Sinusoidal_Signals3_.jpg)
+
+An unmodified expression of the type f(x) = sin(x) or f(x) = cos(x) will produce a sinusoidal waveform, but how do we account for the fact that sinusoidal voltage and current signals have different amplitudes, frequencies, and phase shifts?
+these characteristics can be incorporated as parameters into mathematical expressions built around sin() or cos().
+
+Amplitude is denoted by the letter A, frequency by f, and phase by the Greek letter ϕ (phi). The independent variable is time, denoted by t. Everything is arranged as follows
+
+
+$$
+f(t)=Asin(2πft+ϕ) or f(t)=Acos(2πft+ϕ)\
+$$

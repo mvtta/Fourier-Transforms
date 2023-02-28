@@ -1,0 +1,82 @@
+(and circles)
+
+physical phenomena evolving in time, in a re-cycling fashion, have a direct representation in the Time - Domain.
+
+Throughout history, Human civilizations have left us a lasting symbolism attached to circular shapes. Through drawing, cravings, books and foundations of mathematics. The patterns of celestial bodies in the sky, rivers flowing into oceans turn to rain and flooding rivers. Many dedicated their lives pursuing this powerful idea.
+
+Moreover, this circular idea is part of a "group" of concepts, along with: speed, time and distance. 
+
+![Alt text](https://d1whtlypfis84e.cloudfront.net/guides/wp-content/uploads/2019/12/12092939/download-7-1.png)
+
+To find the speed, we need distance traveled over some known time period. 
+$$Speed  =  Distance/Time$$
+$$S = d/t$
+
+To find the distance, we need to know the time and speed of the object.
+
+$$Distance = Speed × Time$$
+$$d = s × t$$
+
+Time cam be computed in motion, to cover some distance with a known speed
+
+$$Time =  Distance/Speed$$
+$$t =  d/s$$
+
+    Speed is measured in the unit of a meter per second  
+    i.e. ms−1. As distance is measured in meter and time is
+    measured in seconds.
+
+## Dependency and variation
+
+
+When 
+$$α
+, β
+ and γ
+ in αd2dt2x(t)+βddtx(t)+γx(t)=f(t)
+ do not depend on the time, t, and in the absence of an external force, that is for free motion, time enters in (αd2dt2x(t)+βddtx(t)+γx(t)=f(t)$$
+ only through derivatives. Then the equation of motion has the form.
+
+αd2dt2x(t)+βddtx(t)+γx(t)=0(1.3.1)
+
+
+Time and prespective:
+
+A chnage in perception has been discussed since the beggining of time as a tool to reveal new observations. 
+Claim : considering finite len signals, the set of N signals in C ^ N: 
+
+wk[n] = ej2piven ^ nk , n,k = 0,1,....N-1
+
+is an ortogonal basis in C^n
+
+Will require N diff vector of Len N, an k is the index that inducates each vector, goinf from 0 to N-1, n will also go from 0 to N-1, to indicate an element within each vector.   
+
+wk[n] = ej2piven ^ nk N signals take this form
+
+<https://www.coursera.org/learn/dsp1/lecture/qL3Po/1-3-1-b-the-dft-as-a-change-of-basis> minute 1:33
+
+
+physical phenomena evolving in time, oscilation are funcdamental circular motion, periodic ebbs and flows, music vibrates at a exluding apocaliptic events, the ocean ant it's ebb and flows behave in such oscilatory fashion, hence it's patterns, waves, can be translated in a time domain as the continous motion of nature.
+
+
+The circular-like motion, therefor, appears to be a fundamental element of the universe.
+
+A rocket, burns fuel, hopefully reaching the earth's atmosphere, this is a one-direction way, when the fuel exhausts, potetialy orbiting the earth at a constant speed, takes advange of this so called  cyclinc state. 
+
+Apart metaphysical digressions and theoretical proposals like the many world interpretation, our pragmatic apporch is based on the premisse, 
+
+Is fairly easy to descibe and parametrize oscilations, 
+
+
+
+sustainable dynamic systems, one could argue, "move" in circles, or it's behavior can be discribed as oscilatory. 
+
+In matematical notation:
+
+f(x)=lima→∞fa(x),wherefa(x+a)=fa(x)
+
+Physics notation 
+
+Computer science notation:
+
+Differen numerical methods 

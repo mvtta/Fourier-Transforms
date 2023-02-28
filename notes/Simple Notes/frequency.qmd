@@ -1,0 +1,41 @@
+The Frequency - Domain, 
+
+![Alt text](https://cdn8.openculture.com/2017/04/11003129/coltrane-circle-new.jpg)
+
+
+
+«The primary evidence should not be interchanged with the evidence of the
+"axioms"; since the axioms are mostly the result already of an original
+formation of meaning and they already have this formation itself always
+behind them» [Husserl, The origin of Geometry, 1933].
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    - Amplitude: 
+        - positive: the height of the wave from 0
+        - negative: the height of the wave from bellow 0
+        - peak-to-peak: change between the highest and lowest amplitude
+    - Wave length: distance between two points identical in height and slope
+
+From the data above: 
+
+![Alt text](https://study.com/cimages/multimages/16/waveperiodformula.png)
+
+
+f=ω/2π
+f=v/λ
+f=1T
+
